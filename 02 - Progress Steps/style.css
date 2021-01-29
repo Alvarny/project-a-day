@@ -1,16 +1,123 @@
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+:root {
+	--line-border-fill: #3498db;
+	--line-border-empty: #e0e0e0;
 }
 
 body {
-    font-family: "Roboto", sans-serif;
-    margin: 0;
-    height: 100vh;
-    overflow: hidden;
+	background-color: #f6f7fb;
+	font-family: "Muli", sans-serif;
+	margin: 0;
+	height: 100vh;
+	overflow: hidden;
+	/* Flex stuff */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
-    /* Flex stuff */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.container {
+	text-align: center;
+}
+
+.progress-container {
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	margin-bottom: 30px;
+	max-width: 100%;
+	width: 350px;
+}
+
+/* Grey background bar */
+.progress-container::before {
+
+	/* Make pseudo element visible */
+	content: "";
+
+	/* Formatting */
+	background-color: var(--line-border-empty);
+	position: absolute;
+	top: 50%;
+	left: 0;
+	height: 4px;
+	width: 100%;
+
+	/* Put center of bar in the middle rather than top of bar */
+	transform: translateY(-50%);
+	z-index: -1;
+
+}
+
+
+/* Blue progress bar: put progress div behind of the circles to be the connecting line */
+.progress {
+
+	background-color: var(--line-border-fill);
+	position: absolute;
+	top: 50%;
+	left: 0;
+	height: 4px;
+
+	/* Starting point width */
+	width: 0%;
+
+	/* Put center of bar in the middle rather than top of bar */
+	transform: translateY(-50%);
+	z-index: -1;
+	transition: 0.4s ease;
+
+}
+
+.circle {
+
+	/* Formatting */
+	background-color: #fff;
+	color: #999;
+	height: 30px;
+	width: 30px;
+
+	/* Border */
+	border-radius: 50%;
+	border: 3px solid var(--line-border-empty);
+
+	/* Center numbers */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	transition: .4s ease;
+}
+
+
+.circle.active {
+	border-color: var(--line-border-fill);
+}
+
+.btn {
+	background-color: var(--line-border-fill);
+	color: #fff;
+	border: 0;
+	border-radius: 6px;
+	cursor: pointer;
+	font-family: inherit;
+	padding: 8px 30px;
+	margin: 5px;
+	font-size: 14px;
+}
+
+.btn:active {
+	transform: scale(.98);
+}
+
+.btn:focus {
+	outline: 0;
+}
+
+.btn:disabled {
+	background-color: var(--line-border-empty);
+	cursor: not-allowed;
 }
